@@ -4,7 +4,7 @@ export const categories: Category[] = [
   { id: "cat-1", name: "Consumer Electronics", slug: "consumer-electronics", image: "/assets/electronics.png", featured: true, subcategories: ["Smart devices", "Audio", "Computer accessories"] },
   { id: "cat-2", name: "Apparel & Fashion", slug: "apparel-fashion", image: "/assets/apparel.png", featured: true, subcategories: ["Uniforms", "Activewear", "Footwear"] },
   { id: "cat-3", name: "Home & Garden", slug: "home-garden", image: "/assets/garden.png", featured: true, subcategories: ["Kitchenware", "Storage", "Outdoor"] },
-  { id: "cat-4", name: "Beauty & Personal Care", slug: "beauty-personal-care", image: "/assets/beauty.png", featured: false, subcategories: ["Skin care", "Packaging", "Salon supplies"] },
+  { id: "cat-4", name: "Beauty & Personal Care", slug: "beauty-personal-care", image: "/assets/beauty.png", featured: false, subcategories: ["Skin care", "Packaging", "Salon supplies", "Human hair extensions"] },
   { id: "cat-5", name: "Machinery", slug: "machinery", image: "/assets/machinery.png", featured: true, subcategories: ["Packaging machines", "CNC", "Textile machines"] },
   { id: "cat-6", name: "Industrial Supplies", slug: "industrial-supplies", image: "/assets/industrial.png", featured: false, subcategories: ["Safety", "Fasteners", "Electrical"] },
   { id: "cat-7", name: "Packaging & Printing", slug: "packaging-printing", image: "/assets/packaging.png", featured: true, subcategories: ["Boxes", "Labels", "Flexible packaging"] },
@@ -167,6 +167,25 @@ export const suppliers: Supplier[] = [
     intro: "Automotive component supplier with custom stamping, plastics, and assembly support.",
     banner: "/assets/auto.png",
     logo: "MG"
+  },
+  {
+    id: "sup-9",
+    name: "Indian Human Hair Shop",
+    slug: "indian-human-hair-shop",
+    type: "Exporter",
+    country: "India",
+    region: "Tamil Nadu",
+    years: 9,
+    responseRate: 95,
+    onTimeDelivery: 91,
+    verified: true,
+    secureTrade: true,
+    mainProducts: ["Human hair extensions", "Virgin hair bundles", "Closures and frontals"],
+    certifications: ["Export-ready documentation", "Quality inspection available"],
+    capacity: "18,000 hair bundles/month",
+    intro: "Human hair extensions supplier for salons, distributors, and private-label beauty brands. Supports inquiry-led quotations, sample requests, bundle customization, and export packing.",
+    banner: "/assets/human-hair-extensions.png",
+    logo: "IH"
   }
 ];
 
@@ -203,7 +222,7 @@ const productTitles = [
   ["Commercial Fitness Resistance Band Set", "sports-entertainment", "Fitness", "sports"]
 ] as const;
 
-export const products: Product[] = productTitles.map(([title, category, subcategory, imageSlug], index) => {
+export const products: Product[] = productTitles.map<Product>(([title, category, subcategory, imageSlug], index) => {
   const supplier = suppliers[index % suppliers.length];
   const basePrice = 1.8 + (index % 9) * 4.25;
   return {
@@ -239,24 +258,130 @@ export const products: Product[] = productTitles.map(([title, category, subcateg
       "Shipping terms": ["EXW", "FOB", "CIF", "DDP"][index % 4]
     }
   };
-});
+}).concat([
+  {
+    id: "prod-31",
+    title: "Raw Indian Hair Extension Bundles",
+    slug: "raw-indian-hair-extension-bundles",
+    category: "beauty-personal-care",
+    subcategory: "Human hair extensions",
+    supplierId: "sup-9",
+    image: "/assets/human-hair-extensions.png",
+    gallery: ["/assets/human-hair-extensions.png", "/assets/beauty.png"],
+    minPrice: 28,
+    maxPrice: 86,
+    currency: "USD",
+    moq: 20,
+    unit: "bundles",
+    stock: 2400,
+    capacity: "18,000 bundles/month",
+    leadTime: 10,
+    customizable: true,
+    sampleAvailable: true,
+    readyToShip: true,
+    tradeProtected: true,
+    country: "India",
+    shipping: ["Air freight", "Sea freight", "Courier"],
+    popularity: 96,
+    description: "Bulk raw Indian hair bundles for salons, distributors, and private-label beauty programs. Buyers can request length mixes, texture options, sample bundles, packaging, and quotation terms before placing a wholesale order.",
+    specs: {
+      Material: "Human hair",
+      Texture: "Straight, wavy, curly options",
+      Lengths: "10 to 30 inch quotation range",
+      "Catalog model": "Inquiry-led wholesale quotation",
+      "Sample policy": "Available on request",
+      "Shipping terms": "EXW, FOB, CIF, DDP placeholders"
+    }
+  },
+  {
+    id: "prod-32",
+    title: "Private Label Clip-In Hair Extensions",
+    slug: "private-label-clip-in-hair-extensions",
+    category: "beauty-personal-care",
+    subcategory: "Human hair extensions",
+    supplierId: "sup-9",
+    image: "/assets/human-hair-extensions.png",
+    gallery: ["/assets/human-hair-extensions.png", "/assets/packaging.png"],
+    minPrice: 18,
+    maxPrice: 64,
+    currency: "USD",
+    moq: 50,
+    unit: "sets",
+    stock: 1600,
+    capacity: "9,500 sets/month",
+    leadTime: 14,
+    customizable: true,
+    sampleAvailable: true,
+    readyToShip: false,
+    tradeProtected: true,
+    country: "India",
+    shipping: ["Air freight", "Courier"],
+    popularity: 89,
+    description: "Clip-in hair extension sets for beauty retailers and salon chains that need private-label packaging, color matching, and structured RFQ-based pricing. Product visibility is approved by super admin before public listing.",
+    specs: {
+      Material: "Human hair blend options by quotation",
+      "Set options": "7-piece and 10-piece pack structures",
+      "Customization": "Brand label, pouch, carton marks",
+      "Catalog model": "Request model with admin-approved display",
+      "Sample policy": "Paid sample before bulk confirmation",
+      "Shipping terms": "FOB and courier placeholders"
+    }
+  },
+  {
+    id: "prod-33",
+    title: "Lace Closure and Frontal Pieces",
+    slug: "lace-closure-and-frontal-pieces",
+    category: "beauty-personal-care",
+    subcategory: "Human hair extensions",
+    supplierId: "sup-9",
+    image: "/assets/human-hair-extensions.png",
+    gallery: ["/assets/human-hair-extensions.png", "/assets/beauty.png"],
+    minPrice: 22,
+    maxPrice: 72,
+    currency: "USD",
+    moq: 30,
+    unit: "pieces",
+    stock: 1100,
+    capacity: "6,000 pieces/month",
+    leadTime: 12,
+    customizable: true,
+    sampleAvailable: true,
+    readyToShip: true,
+    tradeProtected: true,
+    country: "India",
+    shipping: ["Air freight", "Courier"],
+    popularity: 91,
+    description: "Closure and frontal pieces for wholesalers sourcing salon-ready hair products. Buyers can submit specifications for lace type, parting style, lengths, packing, and destination-country documentation.",
+    specs: {
+      Material: "Human hair",
+      "Lace options": "Transparent and HD lace placeholders",
+      Lengths: "10 to 24 inch quotation range",
+      "Customization": "Density, texture, label, packaging",
+      "Inspection": "Pre-shipment inspection available",
+      "Shipping terms": "EXW, FOB, DDP placeholders"
+    }
+  }
+]);
 
 export const rfqs: RFQ[] = [
   { id: "rfq-1", productName: "Custom printed mailer boxes", category: "packaging-printing", quantity: 50000, unit: "pieces", targetPrice: "Under $0.18/piece", destinationCountry: "United States", deadline: "2026-07-12", status: "OPEN", quotes: 7 },
   { id: "rfq-2", productName: "Workwear jackets with reflective tape", category: "apparel-fashion", quantity: 12000, unit: "pieces", targetPrice: "Under $9.50/piece", destinationCountry: "Germany", deadline: "2026-07-18", status: "QUOTED", quotes: 12 },
-  { id: "rfq-3", productName: "Carton sealing line for food warehouse", category: "machinery", quantity: 4, unit: "sets", targetPrice: "Negotiable", destinationCountry: "India", deadline: "2026-08-01", status: "OPEN", quotes: 4 }
+  { id: "rfq-3", productName: "Carton sealing line for food warehouse", category: "machinery", quantity: 4, unit: "sets", targetPrice: "Negotiable", destinationCountry: "India", deadline: "2026-08-01", status: "OPEN", quotes: 4 },
+  { id: "rfq-4", productName: "Raw Indian hair bundles for salon distribution", category: "beauty-personal-care", quantity: 500, unit: "bundles", targetPrice: "Quote by length and texture", destinationCountry: "United States", deadline: "2026-07-22", status: "OPEN", quotes: 9 }
 ];
 
 export const orders: Order[] = [
   { id: "order-1", number: "AB2B-2026-1001", buyer: "Metro Retail Sourcing", supplierId: "sup-4", status: "In production", paymentStatus: "Protected payment authorized", total: 18450, currency: "USD", leadTime: 24, destination: "Los Angeles, United States", secureTrade: true, timeline: ["Draft approved", "Supplier confirmed", "Payment authorized", "Production started"] },
   { id: "order-2", number: "AB2B-2026-1002", buyer: "Orion Hospitality Group", supplierId: "sup-6", status: "Ready to ship", paymentStatus: "Paid", total: 74200, currency: "EUR", leadTime: 35, destination: "Barcelona, Spain", secureTrade: true, timeline: ["PO created", "Inspection requested", "Inspection passed", "Ready to ship"] },
-  { id: "order-3", number: "AB2B-2026-1003", buyer: "BrightCart Imports", supplierId: "sup-2", status: "Disputed", paymentStatus: "Refund request placeholder", total: 12990, currency: "USD", leadTime: 14, destination: "Mumbai, India", secureTrade: true, timeline: ["Shipped", "Buyer opened dispute", "Admin mediation started"] }
+  { id: "order-3", number: "AB2B-2026-1003", buyer: "BrightCart Imports", supplierId: "sup-2", status: "Disputed", paymentStatus: "Refund request placeholder", total: 12990, currency: "USD", leadTime: 14, destination: "Mumbai, India", secureTrade: true, timeline: ["Shipped", "Buyer opened dispute", "Admin mediation started"] },
+  { id: "order-4", number: "AB2B-2026-1004", buyer: "SalonLine Wholesale", supplierId: "sup-9", status: "Pending supplier confirmation", paymentStatus: "Secure trade eligibility review", total: 18600, currency: "USD", leadTime: 12, destination: "Atlanta, United States", secureTrade: true, timeline: ["Inquiry converted to draft order", "Length mix confirmed", "Awaiting supplier confirmation"] }
 ];
 
 export const conversations = [
   { id: "conv-1", subject: "Inquiry: Printed corrugated box", supplier: "TerraPack Exporters", unread: 2, lastMessage: "We can hold the quoted rate for 10 days and include carton drop-test documentation.", time: "09:42" },
   { id: "conv-2", subject: "RFQ quote: Workwear jackets", supplier: "Everloom Apparel Works", unread: 0, lastMessage: "Please confirm GSM, zipper grade, and target delivery port.", time: "Yesterday" },
-  { id: "conv-3", subject: "Order AB2B-2026-1001", supplier: "TerraPack Exporters", unread: 1, lastMessage: "Production samples are ready for review.", time: "Jun 25" }
+  { id: "conv-3", subject: "Order AB2B-2026-1001", supplier: "TerraPack Exporters", unread: 1, lastMessage: "Production samples are ready for review.", time: "Jun 25" },
+  { id: "conv-4", subject: "RFQ: Raw Indian hair extension bundles", supplier: "Indian Human Hair Shop", unread: 3, lastMessage: "Please share preferred lengths, texture split, packing style, and sample quantity for an accurate quotation.", time: "10:18" }
 ];
 
 export const vendorOnboardingRequests: VendorOnboardingRequest[] = [
@@ -307,6 +432,22 @@ export const vendorOnboardingRequests: VendorOnboardingRequest[] = [
     status: "PENDING",
     submittedAt: "2026-06-25",
     adminNote: "Commercial references requested before publishing storefront."
+  },
+  {
+    id: "von-4",
+    companyName: "Indian Human Hair Shop",
+    contactName: "Vendor onboarding team",
+    email: "vendor.hair.approved@aristos.demo",
+    phone: "+91-90000-4422",
+    country: "India",
+    businessType: "Exporter",
+    categories: ["Beauty & Personal Care"],
+    bannerUrl: "/assets/human-hair-extensions.png",
+    productCatalogMode: "BOTH",
+    requestedProducts: ["Raw Indian hair bundles", "Clip-in hair extensions", "Lace closures and frontals"],
+    status: "APPROVED",
+    submittedAt: "2026-06-27",
+    adminNote: "Demo vendor added from public website reference. Final legal name, certifications, and product catalog should be verified before live marketplace use."
   }
 ];
 
@@ -391,6 +532,30 @@ export const productApprovalRequests: ProductApprovalRequest[] = [
     visibility: "HIDDEN",
     submittedAt: "2026-06-25",
     superAdminNote: "Storefront documents pending."
+  },
+  {
+    id: "par-4",
+    productTitle: "Raw Indian Hair Extension Bundles",
+    supplierName: "Indian Human Hair Shop",
+    category: "Beauty & Personal Care",
+    submittedBy: "Approved vendor",
+    model: "INQUIRY_MODEL",
+    status: "APPROVED",
+    visibility: "PUBLIC",
+    submittedAt: "2026-06-27",
+    superAdminNote: "Approved for demo catalog visibility. Buyers should request length, texture, sample, and packaging details through RFQ/inquiry."
+  },
+  {
+    id: "par-5",
+    productTitle: "Private Label Clip-In Hair Extensions",
+    supplierName: "Indian Human Hair Shop",
+    category: "Beauty & Personal Care",
+    submittedBy: "Approved vendor",
+    model: "REQUEST_MODEL",
+    status: "PENDING_SUPER_ADMIN",
+    visibility: "HIDDEN",
+    submittedAt: "2026-06-27",
+    superAdminNote: "Pending final private-label packaging and brand material review."
   }
 ];
 
