@@ -45,8 +45,8 @@ export function DashboardShell({
             </div>
             <div className="flex gap-2">
               <select className="field max-w-32">
-                <option>USD</option>
                 <option>INR</option>
+                <option>USD</option>
                 <option>EUR</option>
               </select>
               <select className="field max-w-32">

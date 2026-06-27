@@ -27,8 +27,8 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             </select>
             <input name="country" defaultValue={params.get("country") ?? ""} className="field" placeholder="Country / region" />
             <div className="grid grid-cols-2 gap-2">
-              <input name="minPrice" className="field" placeholder="Min price" />
-              <input name="maxPrice" className="field" placeholder="Max price" />
+              <input name="minPrice" className="field" placeholder="Min price INR" />
+              <input name="maxPrice" className="field" placeholder="Max price INR" />
             </div>
             <input name="moq" className="field" placeholder="Max MOQ" />
             {[

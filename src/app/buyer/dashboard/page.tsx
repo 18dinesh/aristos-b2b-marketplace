@@ -3,6 +3,7 @@ import { DashboardShell } from "@/components/DashboardShell";
 import { StatCard } from "@/components/Stats";
 import { customerOnboardingRequests, orders, rfqs } from "@/lib/data";
 import { Badge } from "@/components/Badge";
+import { formatInr } from "@/lib/currency";
 
 const nav = [
   { label: "Overview", href: "/buyer/dashboard", icon: "BarChart3" },
@@ -32,7 +33,7 @@ export default function BuyerDashboard() {
         <div className="border-b border-slate-200 p-4"><h2 className="text-xl font-black">Recent Orders</h2></div>
         <table className="dashboard-table">
           <thead><tr><th>Order</th><th>Supplier</th><th>Status</th><th>Total</th><th></th></tr></thead>
-          <tbody>{orders.map((order) => <tr key={order.id}><td>{order.number}</td><td>{order.supplierId}</td><td>{order.status}</td><td>{order.currency} {order.total.toLocaleString()}</td><td><Link className="font-bold text-teal-700" href={`/orders/${order.id}`}>Open</Link></td></tr>)}</tbody>
+          <tbody>{orders.map((order) => <tr key={order.id}><td>{order.number}</td><td>{order.supplierId}</td><td>{order.status}</td><td>{formatInr(order.total, order.currency)}</td><td><Link className="font-bold text-teal-700" href={`/orders/${order.id}`}>Open</Link></td></tr>)}</tbody>
         </table>
       </section>
       <section className="mt-6 grid gap-4 md:grid-cols-2">

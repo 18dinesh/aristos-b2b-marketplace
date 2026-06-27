@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { getProduct, getSupplier, products } from "@/lib/data";
+import { formatProductRange } from "@/lib/currency";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -45,7 +46,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <h1 className="mt-4 text-3xl font-black leading-tight text-slate-950">{product.title}</h1>
             <Link href={`/suppliers/${supplier.slug}`} className="mt-2 block text-sm font-bold text-teal-700">{supplier.name}</Link>
             <div className="mt-5 rounded bg-slate-50 p-4">
-              <div className="text-3xl font-black text-slate-950">{product.currency} {product.minPrice.toLocaleString()} - {product.maxPrice.toLocaleString()}</div>
+              <div className="text-3xl font-black text-slate-950">{formatProductRange(product)}</div>
               <div className="mt-1 text-sm text-slate-600">Minimum order: {product.moq.toLocaleString()} {product.unit} · Lead time {product.leadTime} days</div>
             </div>
             <div className="mt-5 grid gap-2 sm:grid-cols-2">

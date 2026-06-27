@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, MessageSquare, ShoppingCart } from "lucide-react";
 import { getSupplier } from "@/lib/data";
+import { formatProductRange } from "@/lib/currency";
 import type { Product } from "@/lib/types";
 import { Badge } from "./Badge";
 
@@ -25,7 +26,7 @@ export function ProductCard({ product }: { product: Product }) {
         </Link>
         <div>
           <div className="text-lg font-black text-slate-950">
-            {product.currency} {product.minPrice.toLocaleString()} - {product.maxPrice.toLocaleString()}
+            {formatProductRange(product)}
           </div>
           <div className="text-sm text-slate-500">MOQ {product.moq.toLocaleString()} {product.unit}</div>
         </div>

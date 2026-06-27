@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   try {
     const input = schema.parse(await request.json());
     const total = input.items.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0);
-    const payment = await createPaymentIntent({ orderId: "order-new", amount: total, currency: "USD" });
+    const payment = await createPaymentIntent({ orderId: "order-new", amount: total, currency: "INR" });
     return created({ id: "order-new", status: "DRAFT", total, payment, ...input });
   } catch (error) {
     return apiError(error);

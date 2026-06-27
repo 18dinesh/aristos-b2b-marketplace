@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Badge } from "@/components/Badge";
 import { getSupplier, orders } from "@/lib/data";
+import { formatInr } from "@/lib/currency";
 
 export default async function OrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -22,7 +23,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
           <div className="mt-6 grid gap-3 md:grid-cols-4">
             <div className="rounded bg-slate-50 p-4"><b>Status</b><p>{order.status}</p></div>
             <div className="rounded bg-slate-50 p-4"><b>Payment</b><p>{order.paymentStatus}</p></div>
-            <div className="rounded bg-slate-50 p-4"><b>Total</b><p>{order.currency} {order.total.toLocaleString()}</p></div>
+            <div className="rounded bg-slate-50 p-4"><b>Total</b><p>{formatInr(order.total, order.currency)}</p></div>
             <div className="rounded bg-slate-50 p-4"><b>Lead time</b><p>{order.leadTime} days</p></div>
           </div>
         </div>

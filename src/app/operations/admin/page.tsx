@@ -12,9 +12,10 @@ import {
 
 const nav = [
   { label: "Operations overview", href: "/operations/admin", icon: "BarChart3" },
+  { label: "Catalog editor", href: "/operations/admin/catalog", icon: "Boxes" },
   { label: "Vendor onboarding", href: "/operations/admin", icon: "Factory" },
   { label: "Customer onboarding", href: "/operations/admin", icon: "Users" },
-  { label: "Product approvals", href: "/operations/admin", icon: "Boxes" },
+  { label: "Product approvals", href: "/operations/admin", icon: "ShieldCheck" },
   { label: "Service requests", href: "/rfq", icon: "FileText" },
   { label: "Disputes", href: "/protection", icon: "ShieldCheck" },
   { label: "Settings", href: "/operations/admin", icon: "Settings" }
@@ -128,6 +129,7 @@ export default function OperationsAdminDashboard() {
         <div className="card p-5">
           <h2 className="text-xl font-black">Supplier Records</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">{suppliers.length} supplier records are available for profile, certification, and storefront maintenance.</p>
+          <a className="secondary-button mt-4 w-full" href="/operations/admin/catalog">Edit vendors and products</a>
         </div>
         <div className="card p-5">
           <h2 className="text-xl font-black">Customer Details</h2>
